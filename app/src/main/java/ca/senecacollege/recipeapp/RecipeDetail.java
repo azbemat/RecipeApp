@@ -16,7 +16,16 @@ import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 
+import ca.senecacollege.recipeapp.Recipe;
+import ca.senecacollege.recipeapp.RecipeDatabase;
+import ca.senecacollege.recipeapp.DatabaseManager;
+
+
 public class RecipeDetail extends AppCompatActivity implements View.OnClickListener {
+
+    Recipe recipeObject;
+    DatabaseManager dbManager;
+    RecipeDatabase db;
 
     TextView recipe_name, recipe_calories, recipe_weight, recipe_meal, recipe_cuisine, recipe_dish, recipe_ingredient;
     ImageView recipe_img;
@@ -29,7 +38,6 @@ public class RecipeDetail extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
-
 
         recipe_name = findViewById(R.id.recipeName);
         recipe_img = findViewById(R.id.recipeImage);
@@ -48,6 +56,11 @@ public class RecipeDetail extends AppCompatActivity implements View.OnClickListe
 
         Recipe recipeReceived = (Recipe) intent.getSerializableExtra("recipeObj");
 
+        recipeObject = new Recipe();
+
+        db = DatabaseManager.getDBInstance(this);
+        dbManager = ((myApp)getApplication()).getDatabaseManager();
+
         recipe_name.setText(recipeReceived.getRecipeName());
         Picasso.get().load(recipeReceived.getImgUrl()).resize(400, 400).into(recipe_img);
         recipe_calories.setText("Calories: " + decimalFormat(recipeReceived.getCalories()));
@@ -57,6 +70,16 @@ public class RecipeDetail extends AppCompatActivity implements View.OnClickListe
         recipe_dish.setText("Dish: " + recipeReceived.getDishType());
         //recipe_ingredient.setText(recipeReceived.getIngredientList());
         recipe_ingredient.setText("Ingredients: " + recipeReceived.getIngredientStringList());
+
+
+        recipeObject.setRecipeName(recipeReceived.getRecipeName());
+        recipeObject.setCalories(recipeReceived.getCalories());
+        recipeObject.setTotalWeight(recipeReceived.getTotalWeight());
+        recipeObject.setMealType(recipeReceived.getMealType());
+        recipeObject.setCuisineType(recipeReceived.getCuisineType());
+        recipeObject.setDishType(recipeReceived.getDishType());
+        recipeObject.setIngredientList(recipeReceived.getIngredientList());
+
 
     }
 
@@ -77,7 +100,15 @@ public class RecipeDetail extends AppCompatActivity implements View.OnClickListe
         switch (btn_value) {
             case "Add to favourite":
                 Log.d("Check", "onClick executed ");
+
+                // Response User
                 Toast.makeText(RecipeDetail.this, "Recipe added to Favourite List", Toast.LENGTH_LONG).show();
+
+                //
+                dbManager.insertNewRecipe(recipeObject);
+
+                recipeObject = new Recipe();
+
                 break;
 
         }

@@ -8,6 +8,12 @@ public class myApp extends Application {
 
     private JsonService jsonService = new JsonService();
 
+    private DatabaseManager databaseManager = new DatabaseManager();
+
+    public DatabaseManager getDatabaseManager() {
+        return databaseManager;
+    }
+
     public NetworkingService getNetworkingService() {
         return networkingService;
     }

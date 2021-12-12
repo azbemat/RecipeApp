@@ -1,5 +1,6 @@
 package ca.senecacollege.recipeapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.re
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Log.d("query", query);
-//                findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+                findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
 
                 Log.d("Check", "UPP");
 
@@ -86,18 +87,35 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.re
             public boolean onQueryTextChange(String newText) {
                 Log.d("query change", newText);
 
-                if(newText.length() == 0){
-                    recipes = new ArrayList<>(0);
+                    recipes.clear();
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
-                }
+
 
                 return false;
             }
         });
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()){
+            case R.id.favouriteMenu: {
+
+                Log.d("Check", "onOptionsItemSelected: Favourite");
+
+                Intent myIntent = new Intent(this, FavouriteList.class);
+                startActivity(myIntent);
+
+                break;
+            }
+        }
+        return true;
+    }
+
 
     @Override
     public void recipeClicked(Recipe selectedRecipe) {
@@ -115,10 +133,8 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.re
     @Override
     public void dataFromAPI(String jsonString) {
 
-//        findViewById(R.id.loadingPanel).setVisibility(View.INVISIBLE);
+        findViewById(R.id.loadingPanel).setVisibility(View.INVISIBLE);
 
-
-        //String testString = "{q:chicken,from:0,to:10,more:true,count:7000,hits:[{recipe:{uri:http://www.edamam.com/ontologies/edamam.owl#recipe_b79327d05b8e5b838ad6cfd9576b30b6,label:Chicken Vesuvio,image:https://www.edamam.com/web-img/e42/e42f9119813e890af34c259785ae1cfb.jpg,source:Serious Eats,url:http://www.seriouseats.com/recipes/2011/12/chicken-vesuvio-recipe.html,shareAs:http://www.edamam.com/recipe/chicken-vesuvio-b79327d05b8e5b838ad6cfd9576b30b6/chicken,yield:4.0,ingredientLines:[1/2 cup olive oil,5 cloves garlic, peeled,2 large russet potatoes, peeled and cut into chunks,1 3-4 pound chicken, cut into 8 pieces (or 3 pound chicken legs),3/4 cup white wine,3/4 cup chicken stock,3 tablespoons chopped parsley,1 tablespoon dried oregano,Salt and pepper,1 cup frozen peas, thawed],calories:4228.043058200812,totalWeight:2976.8664549004047,cuisineType:[american],mealType:[lunch/dinner],dishType:[main course]}}]}";
         recipes = jsonService.getRecipesFromJSON(jsonString);
         adapter = new RecipesAdapter(this,recipes);
         recyclerView.setAdapter(adapter);

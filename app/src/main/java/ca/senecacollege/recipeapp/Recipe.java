@@ -1,10 +1,16 @@
 package ca.senecacollege.recipeapp;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.util.Arrays;
 
+@Entity
 public class Recipe implements Serializable {
 
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     private String recipeName;
@@ -14,7 +20,20 @@ public class Recipe implements Serializable {
     private String mealType;
     private String cuisineType;
     private String dishType;
+
+    @Ignore
     private String[] ingredientList;
+
+    public Recipe() {
+        this.recipeName = "";
+        this.imgUrl = "";
+        this.calories = "";
+        this.totalWeight = "";
+        this.mealType = "";
+        this.cuisineType = "";
+        this.dishType = "";
+        this.ingredientList = null;
+    }
 
     public Recipe(String recipeName, String imgUrl, String calories, String totalWeight, String mealType, String cuisineType, String dishType, String[] ingredientList) {
         this.recipeName = recipeName;
@@ -25,6 +44,14 @@ public class Recipe implements Serializable {
         this.cuisineType = cuisineType;
         this.dishType = dishType;
         this.ingredientList = ingredientList;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getRecipeName() {
