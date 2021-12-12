@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:fillViewport="false">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/recipeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:gravity="center"
+            android:text="Recipe Name"
+            android:textSize="@dimen/recipe_text_title"
+            android:textColor="@color/BlackDark"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/recipeImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/recipeCalories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:text="TextView"
+            android:textSize="@dimen/recipe_text_details" />
+
+        <TextView
+            android:id="@+id/recipeWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:text="TextView"
+            android:textSize="@dimen/recipe_text_details" />
+
+        <TextView
+            android:id="@+id/recipeMeal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:text="TextView"
+            android:textSize="@dimen/recipe_text_details" />
+
+        <TextView
+            android:id="@+id/recipeCuisine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:text="TextView"
+            android:textSize="@dimen/recipe_text_details" />
+
+        <TextView
+            android:id="@+id/recipeDish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:text="TextView"
+            android:textSize="@dimen/recipe_text_details" />
+
+        <TextView
+            android:id="@+id/recipeIngredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:textSize="@dimen/recipe_text_details"
+            android:inputType="textMultiLine"/>
+
+        <Button
+            android:id="@+id/favouriteButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onFavouriteClick"
+            android:text="Add to favourite" />
+
+    </LinearLayout>
+
+</ScrollView>
