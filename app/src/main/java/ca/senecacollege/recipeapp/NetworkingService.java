@@ -47,10 +47,8 @@ public class NetworkingService {
                     String completeURLString = recipeURL1 + recipeName + recipeURL2;
 
 
-                    Log.d("Check", "Before conn");
-                    //String completeURLString = "http://myjson.dit.upm.es/api/bins/c1kn";
+                    Log.d("Check", "Conn Starts");
                     URL urlObj = new URL(completeURLString);
-
                     urlConnection = (HttpURLConnection) urlObj.openConnection();
                     urlConnection.setRequestMethod("GET");
                     urlConnection.setRequestProperty("Content-Type", "application/json");

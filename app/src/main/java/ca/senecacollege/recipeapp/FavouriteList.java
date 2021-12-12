@@ -27,7 +27,6 @@ public class FavouriteList extends AppCompatActivity implements DatabaseManager.
         listOfRecipes = findViewById(R.id.list_of_recipes);
         dbManager = ((myApp) getApplication()).getDatabaseManager();
         dbManager.listener = this;
-        //listFromMA = getIntent().getParcelableArrayListExtra("listOfDonations");
         dbManager.getAllRecipes();
 
         listOfRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -35,12 +34,13 @@ public class FavouriteList extends AppCompatActivity implements DatabaseManager.
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
-
                 Log.d("Check", "onItemClick: " + i);
 
                 Toast.makeText(getApplicationContext(),
                         "Click ListItem Number " + i, Toast.LENGTH_LONG)
                         .show();
+
+                Log.d("Check", "onItemClick: " + listFromDB.get(i).getRecipeName());
 
             }
         });

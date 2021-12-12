@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.re
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
-
         recyclerView = findViewById(R.id.recipeList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -68,30 +66,22 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.re
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.d("query", query);
+
                 findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
 
-                Log.d("Check", "UPP");
-
-                // Search for Recipe
                 networkingManager.searchRecipes(query);
-
-                Log.d("Check", "DOWN");
-
-
 
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Log.d("query change", newText);
 
+                if(newText.length() == 0){
                     recipes.clear();
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
-
-
+                }
 
                 return false;
             }
@@ -104,8 +94,6 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.re
         super.onOptionsItemSelected(item);
         switch (item.getItemId()){
             case R.id.favouriteMenu: {
-
-                Log.d("Check", "onOptionsItemSelected: Favourite");
 
                 Intent myIntent = new Intent(this, FavouriteList.class);
                 startActivity(myIntent);
@@ -122,9 +110,6 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.re
 
         Recipe singleRecipe = new Recipe(selectedRecipe.getRecipeName(), selectedRecipe.getImgUrl(), selectedRecipe.getCalories(), selectedRecipe.getTotalWeight(), selectedRecipe.getMealType(), selectedRecipe.getCuisineType(), selectedRecipe.getDishType(), selectedRecipe.getIngredientList());
         Intent intent = new Intent(this,RecipeDetail.class);
-
-        Log.d("Check", "recipeClicked: " + selectedRecipe.getRecipeName());
-        Log.d("Check", "recipeClicked: " + selectedRecipe.getImgUrl());
 
         intent.putExtra("recipeObj", singleRecipe);
         startActivity(intent);

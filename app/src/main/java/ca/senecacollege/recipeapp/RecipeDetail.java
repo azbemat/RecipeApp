@@ -49,13 +49,10 @@ public class RecipeDetail extends AppCompatActivity implements View.OnClickListe
         recipe_ingredient = findViewById(R.id.recipeIngredient);
 
         favouriteBtn = findViewById(R.id.favouriteButton);
-
         favouriteBtn.setOnClickListener(this);
 
         Intent intent = getIntent();
-
         Recipe recipeReceived = (Recipe) intent.getSerializableExtra("recipeObj");
-
         recipeObject = new Recipe();
 
         db = DatabaseManager.getDBInstance(this);
@@ -68,7 +65,6 @@ public class RecipeDetail extends AppCompatActivity implements View.OnClickListe
         recipe_meal.setText("Meal: " + recipeReceived.getMealType());
         recipe_cuisine.setText("Cuisine: " + recipeReceived.getCuisineType());
         recipe_dish.setText("Dish: " + recipeReceived.getDishType());
-        //recipe_ingredient.setText(recipeReceived.getIngredientList());
         recipe_ingredient.setText("Ingredients: " + recipeReceived.getIngredientStringList());
 
 
@@ -99,12 +95,10 @@ public class RecipeDetail extends AppCompatActivity implements View.OnClickListe
 
         switch (btn_value) {
             case "Add to favourite":
-                Log.d("Check", "onClick executed ");
 
                 // Response User
                 Toast.makeText(RecipeDetail.this, "Recipe added to Favourite List", Toast.LENGTH_LONG).show();
 
-                //
                 dbManager.insertNewRecipe(recipeObject);
 
                 recipeObject = new Recipe();

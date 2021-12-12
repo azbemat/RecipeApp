@@ -14,8 +14,8 @@ public class JsonService {
 
         ArrayList<Recipe> arrayList = new ArrayList<>(0);
 
-        // JSON
-        // OBJ -> Array -> OBJ -> OBJ -> String
+        // JSON Structure
+        // Main JSON OBJ -> Recipe Array -> Recipes OBJ -> Recipe OBJ -> Recipe data (String/Array)
 
         try {
             JSONObject jsonObject = new JSONObject(json);
@@ -54,13 +54,6 @@ public class JsonService {
                         ingredientList[j] = temp.getString(j);
                     }
                 }
-                Log.d("Check", "Recipe Name: " + recipeLabel);
-                Log.d("Check", "Recipe Name: " + recipeImgUrl);
-
-                for (int k = 0; k < ingredientList.length; k++) {
-                    Log.d("check", "IngreMemebr: " + ingredientList[k]);
-                }
-
 
                 Recipe recipe = new Recipe(recipeLabel, recipeImgUrl, recipeCalories, recipeTotalWeight, recipeMealType, recipeCuisineType, recipeDishType, ingredientList);
                 arrayList.add(recipe);

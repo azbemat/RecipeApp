@@ -47,11 +47,6 @@ public class FavouriteListAdapter extends BaseAdapter {
 
         recName.setText(listOfRecipes.get(i).getRecipeName());
 
-        Log.d("Check", "getView: " + listOfRecipes.get(i).getImgUrl());
-
-//        Picasso.get().load(listOfRecipes.get(i).getImgUrl()).into(recImg);
-
-
         return view;
     }
 }

@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">RecipeApp</string>
     <string name="recipe_name">Recipe Name</string>
+    <string name="add_to_favourite">Add to favourite</string>
+    <string name="favourite_recipes">Favourite Recipes</string>
+    <string name="recipe">Recipe</string>
+    <string name="favourite">Favourite</string>
+    <string name="search_for_recipe">Search for recipe</string>
 </resources>
