@@ -37,12 +37,6 @@ public class FavouriteList extends AppCompatActivity implements DatabaseManager.
 
                 Log.d("Check", "onItemClick: " + listFromDB.get(i).getRecipeName());
 
-//                Recipe singleRecipe = new Recipe(listFromDB.get(i).getRecipeName(), listFromDB.get(i).getImgUrl(), listFromDB.get(i).getCalories(), listFromDB.get(i).getTotalWeight(), listFromDB.get(i).getMealType(), listFromDB.get(i).getCuisineType(), listFromDB.get(i).getDishType(), null);
-//                Intent intent = new Intent(FavouriteList.this,RecipeDetail.class);
-//
-//                intent.putExtra("recipeObj", singleRecipe);
-//                startActivity(intent);
-
             }
         });
 
