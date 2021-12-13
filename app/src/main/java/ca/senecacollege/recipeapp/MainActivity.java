@@ -77,11 +77,11 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.re
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                if(newText.length() == 0){
-                    recipes.clear();
-                    recyclerView.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
-                }
+//                if(newText.length() == 0){
+//                    recipes.clear();
+//                    recyclerView.setAdapter(adapter);
+//                    adapter.notifyDataSetChanged();
+//                }
 
                 return false;
             }

@@ -2,7 +2,9 @@ package ca.senecacollege.recipeapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,14 +35,13 @@ public class FavouriteList extends AppCompatActivity implements DatabaseManager.
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
-                Log.d("Check", "onItemClick: " + i);
-
-                Toast.makeText(getApplicationContext(),
-                        "Click ListItem Number " + i, Toast.LENGTH_LONG)
-                        .show();
-
                 Log.d("Check", "onItemClick: " + listFromDB.get(i).getRecipeName());
+
+//                Recipe singleRecipe = new Recipe(listFromDB.get(i).getRecipeName(), listFromDB.get(i).getImgUrl(), listFromDB.get(i).getCalories(), listFromDB.get(i).getTotalWeight(), listFromDB.get(i).getMealType(), listFromDB.get(i).getCuisineType(), listFromDB.get(i).getDishType(), null);
+//                Intent intent = new Intent(FavouriteList.this,RecipeDetail.class);
+//
+//                intent.putExtra("recipeObj", singleRecipe);
+//                startActivity(intent);
 
             }
         });
